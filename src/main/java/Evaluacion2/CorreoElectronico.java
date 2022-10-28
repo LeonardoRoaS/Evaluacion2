@@ -4,9 +4,10 @@ public class CorreoElectronico {
 
     private String direccionCorreo, proveedor;
 
-    public CorreoElectronico(String direccionCorreo, String proveedor){
+    public CorreoElectronico(String direccionCorreo, String proveedor, Persona persona){
         this.direccionCorreo = direccionCorreo;
         this.proveedor = proveedor;
+        Persona persona1 = persona;
     }
 
     public String getDireccionCorreo() {

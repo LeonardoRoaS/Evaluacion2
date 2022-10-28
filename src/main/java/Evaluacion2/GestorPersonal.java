@@ -15,9 +15,9 @@ public class GestorPersonal {
         this.correos = new ArrayList<>();
     }
 
-    public Persona buscarPersona(String nombre, String apellido) {
+    public Persona buscarPersona(String nombre, String rut) {
         for (Persona persona : this.personas) {
-            if (persona.getNombre().equalsIgnoreCase(nombre) && persona.getApellido().equalsIgnoreCase(apellido)) {
+            if (persona.getNombre().equalsIgnoreCase(nombre) && persona.getRut().equals(rut)) {
                 return persona;
             }
         }
@@ -25,7 +25,7 @@ public class GestorPersonal {
     }
 
     public boolean agregarPersona(String rut, String nombre, String apellido) {
-        if (buscarPersona(nombre, apellido) == null) {
+        if (buscarPersona(nombre, rut) == null) {
             Persona persona = new Persona(rut, nombre, apellido);
             this.personas.add(persona);
             return true;
@@ -75,8 +75,8 @@ public class GestorPersonal {
 
 
     public boolean agregarCorreo(String nombre, String apellido, String direccionCorreo, String proveedor) {
-        if (buscarPersona(nombre,apellido) == null) {
-            CorreoElectronico correo = new CorreoElectronico(direccionCorreo, proveedor);
+        if (buscarPersona(nombre,apellido) != null) {
+            CorreoElectronico correo = new CorreoElectronico(direccionCorreo, proveedor, buscarPersona(nombre,apellido));
             this.correos.add(correo);
             return true;
         }
